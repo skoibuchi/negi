@@ -1,6 +1,6 @@
-config/
-pcap/
-script/
+/config/
+/pcap/
+/script/
 *.o
 negi
 output.txt
