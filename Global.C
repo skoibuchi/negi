@@ -31,6 +31,23 @@ unsigned long int max_stream_num;
 unsigned long int max_stream_size;
 unsigned long int max_sum_stream_size;
 
+pthread_mutex_t pkt_queue_mutex;
+pthread_mutex_t stream0_queue_mutex;
+pthread_mutex_t stream1_queue_mutex;
+pthread_mutex_t stream2_queue_mutex;
+pthread_mutex_t stream3_queue_mutex;
+
+queue<Packet *> pkt_queue;
+queue<Packet *> stream0_queue;
+queue<Packet *> stream1_queue;
+queue<Packet *> stream2_queue;
+queue<Packet *> stream3_queue;
+
+pthread_t thread_cap;
+pthread_t thread_stream0;
+pthread_t thread_stream1;
+pthread_t thread_stream2;
+pthread_t thread_stream3;
 
 list<Stream *> end_stream_list;
 

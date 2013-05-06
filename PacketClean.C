@@ -53,7 +53,7 @@ void PacketClean::Proc(Packet *pkt){
 
 			//Check all stream for timeout.
 			for(list<Stream *>::iterator it=stream_pool->GetStreamFirstIt(); it != stream_pool->GetStreamLastIt(); it++){
-//				cout << "Stream timeout-----------------------" << endl;
+				cout << "Stream timeout-----------------------" << endl;
 //				cout << "packet timestamp sec: " << packet_timestamp.tv_sec << endl;
 //				cout << "GetLastUpdatedTime: " << (*it)->GetLastUpdatedTime().tv_sec  << endl;
 //				cout << "Division: " << packet_timestamp.tv_sec - (*it)->GetLastUpdatedTime().tv_sec  << endl;

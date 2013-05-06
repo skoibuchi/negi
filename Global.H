@@ -41,6 +41,7 @@
 #include "Observer.H"
 #include "Global.H"
 #include "FileWriter.H"
+#include "Packet.H"
 //#include "RiverGate.H"
 
 
@@ -70,6 +71,24 @@ extern unsigned long int max_stream_num;
 extern unsigned long int max_stream_size;
 extern unsigned long int max_sum_stream_size;
 
+extern pthread_mutex_t pkt_queue_mutex;
+extern pthread_mutex_t stream0_queue_mutex;
+extern pthread_mutex_t stream1_queue_mutex;
+extern pthread_mutex_t stream2_queue_mutex;
+extern pthread_mutex_t stream3_queue_mutex;
+
+extern queue<Packet *> pkt_queue;
+extern queue<Packet *> stream0_queue;
+extern queue<Packet *> stream1_queue;
+extern queue<Packet *> stream2_queue;
+extern queue<Packet *> stream3_queue;
+
+extern pthread_t thread_cap;
+extern pthread_t thread_stream0;
+extern pthread_t thread_stream1;
+extern pthread_t thread_stream2;
+extern pthread_t thread_stream3;
+
 extern Config *config;
 extern PacketPool *packet_pool;
 extern StreamPool *stream_pool;
@@ -98,8 +117,10 @@ extern FileWriter *file_writer;
 //extern RiverGate *river_gate;
 
 extern void packetcap();
+extern void* thread_packetcap(void* args);
 extern void pcap_signal();
-
+extern void* MasterProc0(void* args);
+extern void* MasterProc1(void* args);
 
 extern pthread_mutex_t sss_cond_mut;
 extern pthread_cond_t sss_cond;

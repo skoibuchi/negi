@@ -77,14 +77,28 @@ if(argc != 2){
 */
 
 ///*
-	packetcap();
+//	packetcap();
 //*/
 
-/*
+///*
 	//Capture thread
-	pthread_t thread_cap;
+	int status = 0;
 	status=pthread_create(&thread_cap, NULL, thread_packetcap, NULL);
-*/
+	status=pthread_create(&thread_stream0, NULL, MasterProc0, NULL);
+	status=pthread_create(&thread_stream1, NULL, MasterProc1, NULL);
+	sleep(1);
+//*/
+
+	while(1){
+		if (!pkt_queue.empty()){
+			cout << "Main loop" << endl;
+			master->Proc(pkt_queue.front());
+			pthread_mutex_lock(&pkt_queue_mutex);
+			pkt_queue.pop();
+			pthread_mutex_unlock(&pkt_queue_mutex);
+		}
+	}
+	pthread_join( thread_cap, NULL );
 
     return 0;
 }
